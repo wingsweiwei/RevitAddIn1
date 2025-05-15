@@ -48,7 +48,7 @@
   <!-- Build configuration -->
   <!-- https://github.com/Nice3point/Revit.Build.Tasks -->
   <PropertyGroup>
-    <IsRepackable>true</IsRepackable>
+    <IsRepackable Condition="'$(RevitVersion)' &lt; '2026'">true</IsRepackable>
     <DeployRevitAddin>true</DeployRevitAddin>
   </PropertyGroup>
 
@@ -65,6 +65,7 @@
 
     <!-- IOC -->
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.5" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.5" />
 
     <!-- Logging -->
     <PackageReference Include="Serilog" Version="4.2.0" />
@@ -72,7 +73,7 @@
     <PackageReference Include="Serilog.Extensions.Hosting" Version="9.0.0" />
 
     <!-- Build -->
-    <PackageReference Include="ILRepack" Version="2.0.41" />
+    <PackageReference Include="ILRepack" Version="2.0.41" ExcludeAssets="Runtime"/>
   </ItemGroup>
   
   <ItemGroup>

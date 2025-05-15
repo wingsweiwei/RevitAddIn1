@@ -1,5 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Http;
 using Microsoft.Extensions.Logging;
 using RevitAddIn1.Config.Logging;
 using RevitAddIn1.Config.Options;
@@ -49,7 +51,8 @@ namespace RevitAddIn1
             builder.Services.AddScoped<INavigationViewPageProvider, NavigationViewPageProvider>();
             //builder.Services.AddNavigationViewPageProvider();
             builder.Services.AddSingleton<INavigationService, NavigationService>();
-
+            builder.Services.AddHttpClient();
+            builder.Services.RemoveAll<IHttpMessageHandlerBuilderFilter>();
             _host = builder.Build();
             _host.Start();
         }

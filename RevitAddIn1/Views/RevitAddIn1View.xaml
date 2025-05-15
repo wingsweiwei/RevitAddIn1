@@ -1,0 +1,64 @@
+﻿<ui:FluentWindow
+    x:Class="RevitAddIn1.Views.RevitAddIn1View"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ui="http://lookupengine.com/xaml"
+    xmlns:viewModel="clr-namespace:RevitAddIn1.ViewModels"
+    mc:Ignorable="d"
+    ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
+    ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+    Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+    d:DataContext="{d:DesignInstance viewModel:RevitAddIn1ViewModel, IsDesignTimeCreatable=False}"
+    ExtendsContentIntoTitleBar="True"
+    WindowBackdropType="Mica"
+    WindowCornerPreference="Round"
+    WindowStartupLocation="CenterScreen"
+    Title="RevitAddIn1"
+    Height="450"
+    Width="800">
+    <Grid>
+        <ui:TitleBar
+            x:Name="TitleBar"
+            Title="RevitAddIn1"
+            Grid.Row="0">
+        </ui:TitleBar>
+        <ui:NavigationView
+            x:Name="RootNavigation"
+            Padding="42,0,42,0"
+            BreadcrumbBar="{Binding ElementName=BreadcrumbBar}"
+            FooterMenuItemsSource="{Binding FooterMenuItems, Mode=OneWay}"
+            FrameMargin="0"
+            IsBackButtonVisible="Visible"
+            IsPaneToggleVisible="True"
+            MenuItemsSource="{Binding MenuItems, Mode=OneWay}"
+            OpenPaneLength="310"
+            PaneDisplayMode="Left"
+            TitleBar="{Binding ElementName=TitleBar, Mode=OneWay}">
+            <ui:NavigationView.Header>
+                <ui:BreadcrumbBar x:Name="BreadcrumbBar" Margin="42,32,42,20" />
+            </ui:NavigationView.Header>
+            <ui:NavigationView.AutoSuggestBox>
+                <ui:AutoSuggestBox x:Name="AutoSuggestBox" PlaceholderText="Search">
+                    <ui:AutoSuggestBox.Icon>
+                        <ui:IconSourceElement>
+                            <ui:SymbolIconSource Symbol="Search24" />
+                        </ui:IconSourceElement>
+                    </ui:AutoSuggestBox.Icon>
+                </ui:AutoSuggestBox>
+            </ui:NavigationView.AutoSuggestBox>
+            <ui:NavigationView.ContentOverlay>
+                <Grid>
+                    <ui:SnackbarPresenter x:Name="SnackbarPresenter" />
+                </Grid>
+            </ui:NavigationView.ContentOverlay>
+        </ui:NavigationView>
+        <Grid Grid.Row="1" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+        </Grid>
+    </Grid>
+</ui:FluentWindow>
